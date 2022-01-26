@@ -56,6 +56,9 @@ func main() {
 		resp, _ := http.Get(u)
 		fmt.Println(counter)
 		<-guard
+		mut.Lock()
+		counter++
+		mut.Unlock()
 		timeChan <- time.Since(start)
 		statusChan <- resp.StatusCode
 	}
@@ -74,10 +77,6 @@ func main() {
 				switch status {
 				case http.StatusTooManyRequests:
 					quit <- struct{}{}
-				default:
-					mut.Lock()
-					counter++
-					mut.Unlock()
 				}
 			case t := <-timeChan:
 				getTimes = append(getTimes, t)

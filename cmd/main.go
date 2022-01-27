@@ -54,8 +54,8 @@ func main() {
 	loop := func(u string) {
 		start := time.Now()
 		resp, _ := http.Get(u)
-		fmt.Println(counter)
 		<-guard
+		fmt.Println(counter)
 		mut.Lock()
 		counter++
 		mut.Unlock()

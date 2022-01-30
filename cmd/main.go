@@ -51,9 +51,12 @@ func main() {
 	var counter int
 	var getTimes []time.Duration
 
+	client := new(http.Client)
+	req, _ := http.NewRequest(http.MethodGet, conf.URL, nil)
+
 	loop := func(u string) {
 		start := time.Now()
-		resp, _ := http.Get(u)
+		resp, _ := client.Do(req)
 		<-guard
 		fmt.Println(counter)
 		mut.Lock()

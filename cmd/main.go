@@ -52,7 +52,7 @@ func main() {
 	var getTimes []time.Duration
 
 	client := new(http.Client)
-	req, _ := http.NewRequest(http.MethodGet, conf.URL, nil)
+	req, _ := http.NewRequest(http.MethodGet, f.URL, nil)
 
 	loop := func(u string) {
 		start := time.Now()
